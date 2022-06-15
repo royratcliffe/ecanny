@@ -16,6 +16,11 @@
 %% Recursion ends when all the rows `H' of matrix `T' match the empty list `[]'
 %% and this cannot appear as a guard condition because standard library {@link
 %% lists:all/2} cannot execute within a guard.
+%%
+%% Two sub-functions (prime and prime-prime where underscore stands for prime
+%% within the code) help to correctly match against `[]' and terminating tails,
+%% e.g. `[[], [], []]', which should fail with error if presented initially to
+%% {@link transpose/1} but successfully terminate for mapped row-vector tails.
 
 -spec transpose(Rows :: [] | rows()) -> [] | rows().
 transpose([]) -> [];
