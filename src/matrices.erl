@@ -35,8 +35,13 @@ transpose__(Rows) ->
     end.
 
 %% @doc Dimensions of matrix.
+%%
+%% The resulting tuple has row-major ordering in order to align with typical
+%% row-major indices. Row comes first, column comes second.
 
--spec dimensions(Rows :: rows()) -> dimensions().
+-spec dimensions(Rows :: [] | rows()) -> dimensions().
+dimensions([]) ->
+    {0, 0};
 dimensions([Row | Rows]) ->
     dimensions(Rows, 1, length(Row)).
 
