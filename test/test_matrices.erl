@@ -10,6 +10,6 @@ transpose_test() ->
 
 dimensions_test() ->
     ?assertEqual({0, 0}, matrices:dimensions([])),
-    ?assertEqual({1, 0}, matrices:dimensions([[]])),
+    ?assertEqual({2, 0}, matrices:dimensions([[], []])),
     ?assertEqual({3, 1}, matrices:dimensions([[a], [b], [c]])),
     ?assertEqual({1, 3}, matrices:dimensions([[a, b, c]])).
