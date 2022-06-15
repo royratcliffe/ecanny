@@ -18,20 +18,15 @@
 %% lists:all/2} cannot execute within a guard.
 
 -spec transpose(Rows :: [] | rows()) -> [] | rows().
-transpose([]) ->
-    [];
-transpose(Rows) ->
-    transpose_(Rows).
+transpose([]) -> [];
+transpose(Rows) -> transpose_(Rows).
 
-transpose_(Rows) ->
-    [lists:map(fun hd/1, Rows) | transpose__(lists:map(fun tl/1, Rows))].
+transpose_(Rows) -> [lists:map(fun hd/1, Rows) | transpose__(lists:map(fun tl/1, Rows))].
 
 transpose__(Rows) ->
     case lists:all(fun(Row) -> Row == [] end, Rows) of
-        true ->
-            [];
-        false ->
-            transpose_(Rows)
+        true -> [];
+        false -> transpose_(Rows)
     end.
 
 %% @doc Dimensions of matrix.
@@ -43,13 +38,10 @@ transpose__(Rows) ->
 %% []]' and so on.
 
 -spec dimensions(Rows :: [] | rows()) -> dimensions().
-dimensions([]) ->
-    {0, 0};
-dimensions([Row | Rows]) ->
-    dimensions(Rows, 1, length(Row)).
+dimensions([]) -> {0, 0};
+dimensions([Row | Rows]) -> dimensions(Rows, 1, length(Row)).
 
-dimensions([], NumberOfRows, NumberOfColumns) ->
-    {NumberOfRows, NumberOfColumns};
+dimensions([], NumberOfRows, NumberOfColumns) -> {NumberOfRows, NumberOfColumns};
 dimensions([Row | Rows], NumberOfRows, NumberOfColumns)
     when length(Row) == NumberOfColumns ->
     dimensions(Rows, NumberOfRows + 1, NumberOfColumns).
