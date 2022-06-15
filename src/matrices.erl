@@ -13,7 +13,9 @@
 %% and this cannot appear as a guard condition because standard library {@link
 %% lists:all/2} cannot execute within a guard.
 
--spec transpose(Rows :: rows()) -> rows().
+-spec transpose(Rows :: [] | rows()) -> [] | rows().
+transpose([]) ->
+    [];
 transpose(Rows) ->
     transpose_(Rows).
 
