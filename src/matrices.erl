@@ -38,6 +38,9 @@ transpose__(Rows) ->
 %%
 %% The resulting tuple has row-major ordering in order to align with typical
 %% row-major indices. Row comes first, column comes second.
+%%
+%% The function succeeds incorrectly for nil row vectors, e.g. `[[]]' and `[[],
+%% []]' and so on.
 
 -spec dimensions(Rows :: [] | rows()) -> dimensions().
 dimensions([]) ->
